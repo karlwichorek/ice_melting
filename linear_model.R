@@ -52,3 +52,6 @@ new <- data.frame(Year = 2019)
 predict(model1, new, se.fit = TRUE, interval = "prediction", level = 0.50)
 
 # Add result to median time of day for melting
+
+# Save data output
+saveRDS(data, here("output", "melting_data.rds"))
