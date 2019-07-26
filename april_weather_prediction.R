@@ -64,6 +64,11 @@ for(i in 1:length(year.range)){
 wintertemp <- subset(all.weather, 
                       as.numeric(format(all.weather$Date, "%m")) %in% 
                        c(9, 10))
+
+# Load melting data
+data <- readRDS(melting_data.RDS, here("output"))
+
+# Add temperature data to melting data
 data$Temp <- numeric(length = nrow(data))
 
 for(i in 1:(length(year.range)-1)){
@@ -78,3 +83,5 @@ for(i in 1:(length(year.range)-1)){
 # Evaluate linear model with predicted April temp as additional feature
 model.temp <- lm(MD~Year+Temp, data=data[29:98, ])
 summary(model.temp)
+
+# Predicted April temp does not help model accuracy
